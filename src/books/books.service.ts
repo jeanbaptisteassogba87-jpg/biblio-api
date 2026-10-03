@@ -24,4 +24,12 @@ export class BooksService {
         this.books.push(newBook);
         return newBook ;
     }
+
+    update(id: number , body: {title?: string , year?: number}){
+        const book = this.findOne(id);
+        if(!book) return null;
+
+        Object.assign(book,body);
+        return book ;
+    }
 }
