@@ -32,4 +32,9 @@ export class BooksService {
         Object.assign(book,body);
         return book ;
     }
+
+    delete(id :number){
+        this.books = this.books.filter(b => b.id !== id)
+        return {deleted : true}
+    }
 }
