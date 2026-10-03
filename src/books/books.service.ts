@@ -15,4 +15,13 @@ export class BooksService {
     findOne(id: number){
         return this.books.find(b => b.id === id);
     }
+
+    create(data : {title : string , year  : number}){
+        const newBook = {
+            id : this.books.length + 1 ,
+            ...data,
+        };
+        this.books.push(newBook);
+        return newBook ;
+    }
 }
