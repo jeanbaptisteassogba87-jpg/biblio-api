@@ -17,8 +17,10 @@ export class BooksService {
     }
 
     create(data : {title : string , year  : number}){
+        const ids = this.books.map((book) => book.id);
+        const id = Math.max(0,...ids)+1 ;
         const newBook = {
-            id : this.books.length + 1 ,
+            id : id ,
             ...data,
         };
         this.books.push(newBook);
