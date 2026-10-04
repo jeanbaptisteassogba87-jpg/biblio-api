@@ -38,6 +38,7 @@ export class BooksService {
     }
 
     delete(id :number){
+        this.findOne(id)
         this.books = this.books.filter(b => b.id !== id)
         return {deleted : true}
     }
