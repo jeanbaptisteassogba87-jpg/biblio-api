@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateBookDto } from './dto/create-book.dto.js';
 
 @Injectable()
 export class BooksService {
@@ -20,7 +21,7 @@ export class BooksService {
         return book ;
     }
 
-    create(data : {title : string , year  : number}){
+    create(data : CreateBookDto){
         const ids = this.books.map((book) => book.id);
         const id = Math.max(0,...ids)+1 ;
         const newBook = {
