@@ -29,15 +29,9 @@ export class BooksService {
     return book;
   }
 
-  create(data: CreateBookDto) {
-    const ids = this.books.map((book) => book.id);
-    const id = Math.max(0, ...ids) + 1;
-    const newBook = {
-      id: id,
-      ...data,
-    };
-    this.books.push(newBook);
-    return newBook;
+  async create(data: CreateBookDto) {
+    const newBook = this.repo.create(data);
+    return await this.repo.save(newBook)
   }
 
   update(id: number, body: UpdateBookDto) {
