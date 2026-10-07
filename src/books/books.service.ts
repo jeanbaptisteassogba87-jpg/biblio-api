@@ -21,8 +21,8 @@ export class BooksService {
     return await this.repo.find();
   }
 
-  findOne(id: number) {
-    const book = this.books.find((book) => book.id === id);
+  async findOne(id: number) {
+    const book = await this.repo.findOneBy({id});
     if (!book) {
       throw new NotFoundException(`Book ${id} not found`);
     }
