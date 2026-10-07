@@ -17,8 +17,8 @@ export class BooksService {
     @InjectRepository(Book) private readonly repo: Repository<Book>,
   ) {}
 
-  findAll() {
-    return this.books;
+  async findAll() {
+    return await this.repo.find();
   }
 
   findOne(id: number) {
