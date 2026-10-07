@@ -34,15 +34,15 @@ export class BooksService {
     return await this.repo.save(newBook)
   }
 
-  update(id: number, body: UpdateBookDto) {
-    const book = this.findOne(id);
+  async update(id: number, body: UpdateBookDto) {
+    const book = await this.findOne(id)
     Object.assign(book, body);
-    return book;
+    return await this.repo.save(book)
   }
 
-  delete(id: number) {
-    this.findOne(id);
-    this.books = this.books.filter((b) => b.id !== id);
+  async delete(id: number) {
+    const book = await this.findOne(id);
+    this.repo.delete(book);
     return { deleted: true };
   }
 }
