@@ -3,6 +3,7 @@ import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { BooksModule } from './books/books.module.js';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -16,6 +17,12 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       serviceId: 'biblio-api',
     }),
     BooksModule,
+    TypeOrmModule.forRoot({
+      type: 'better-sqlite3',
+      database: 'biblio.sqlite',
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
