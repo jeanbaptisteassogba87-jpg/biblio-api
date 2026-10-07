@@ -31,10 +31,7 @@ export class BooksController {
   }
 
   @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() body: UpdateBookDto,
-  ) {
+  update(@Param('id') id: string, @Body() body: UpdateBookDto) {
     return this.booksService.update(Number(id), body);
   }
 

@@ -1,6 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateBookDto } from './dto/create-book.dto.js';
 import { UpdateBookDto } from './dto/update-book.dto.js';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Book } from './book.entity.js';
 
 @Injectable()
 export class BooksService {
@@ -9,6 +12,10 @@ export class BooksService {
     { id: 2, title: "L'enfant et la rivière", year: 2016 },
     { id: 3, title: 'Ose être soi', year: 2013 },
   ];
+
+  constructor(
+    @InjectRepository(Book) private readonly repo: Repository<Book>,
+  ) {}
 
   findAll() {
     return this.books;

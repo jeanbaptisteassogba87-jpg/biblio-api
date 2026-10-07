@@ -18,11 +18,11 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     }),
     BooksModule,
     TypeOrmModule.forRoot({
-      type : 'better-sqlite3',
-      database : 'biblio.sqlite',
-      autoLoadEntities : true,
-      synchronize : true
-    })
+      type: 'better-sqlite3',
+      database: 'biblio.sqlite',
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
