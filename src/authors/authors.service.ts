@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Author } from './author.entity.js';
 import { Repository } from 'typeorm';
+import { CreateAuthorDto } from './dto/create-author.dto.js';
 
 @Injectable()
 export class AuthorsService {
@@ -19,6 +20,11 @@ export class AuthorsService {
         throw new NotFoundException(`Author ${id} not found`);
     }
     return author ;
+  }
+
+  async create(data : CreateAuthorDto){
+    const newAuthor = this.repo.create(data);
+    return await this.repo.save(newAuthor);
   }
 
 }
