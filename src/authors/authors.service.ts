@@ -15,22 +15,28 @@ export class AuthorsService {
     return await this.repo.find();
   }
 
-  async findOne(id : number){
-    const author = await this.repo.findOneBy({id});
-    if(!author){
-        throw new NotFoundException(`Author ${id} not found`);
+  async findOne(id: number) {
+    const author = await this.repo.findOneBy({ id });
+    if (!author) {
+      throw new NotFoundException(`Author ${id} not found`);
     }
-    return author ;
+    return author;
   }
 
-  async create(data : CreateAuthorDto){
+  async create(data: CreateAuthorDto) {
     const newAuthor = this.repo.create(data);
     return await this.repo.save(newAuthor);
   }
 
-  async update(id : number , data : UpdateAuthorDto){
+  async update(id: number, data: UpdateAuthorDto) {
     const author = await this.findOne(id);
-    Object.assign(author,data);
-    return await this.repo.save(author) ;
+    Object.assign(author, data);
+    return await this.repo.save(author);
+  }
+
+  async delete(id: number) {
+    const author = await this.findOne(id);
+    this.repo.delete(author);
+    return { deleted: true };
   }
 }
