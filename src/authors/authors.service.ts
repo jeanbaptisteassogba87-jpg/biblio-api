@@ -5,8 +5,11 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthorsService {
-    constructor(
-        @InjectRepository(Author) private readonly repo : Repository<Author>,
-    ){}
-}
+  constructor(
+    @InjectRepository(Author) private readonly repo: Repository<Author>,
+  ) {}
 
+  async findAll() {
+    return await this.repo.find();
+  }
+}
