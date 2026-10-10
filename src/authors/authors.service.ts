@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Author } from './author.entity.js';
 import { Repository } from 'typeorm';
 import { CreateAuthorDto } from './dto/create-author.dto.js';
+import { UpdateAuthorDto } from './dto/update-author.dto.js';
 
 @Injectable()
 export class AuthorsService {
@@ -27,4 +28,9 @@ export class AuthorsService {
     return await this.repo.save(newAuthor);
   }
 
+  async update(id : number , data : UpdateAuthorDto){
+    const author = await this.findOne(id);
+    Object.assign(author,data);
+    return await this.repo.save(author) ;
+  }
 }
