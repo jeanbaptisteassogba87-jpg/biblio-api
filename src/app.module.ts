@@ -4,6 +4,7 @@ import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { BooksModule } from './books/books.module.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthorsModule } from './authors/authors.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -23,6 +24,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       autoLoadEntities: true,
       synchronize: true,
     }),
+    AuthorsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
