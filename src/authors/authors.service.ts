@@ -35,8 +35,8 @@ export class AuthorsService {
   }
 
   async delete(id: number) {
-    const author = await this.findOne(id);
-    this.repo.delete(author);
+    await this.findOne(id);
+    await this.repo.delete(id);
     return { deleted: true };
   }
 }
